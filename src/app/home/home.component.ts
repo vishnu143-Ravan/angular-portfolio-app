@@ -1,28 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { RouterLink } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { Title } from "@angular/platform-browser";
+import { RouterLink } from "@angular/router";
 
 @Component({
-  selector: 'app-home',
+  selector: "app-home",
   standalone: true,
-  imports: [
-    RouterLink,
-  ],
-  templateUrl: './home.component.html',
-  styleUrls: [
-    './home.component.css',
-  ]
+  imports: [RouterLink],
+  templateUrl: "./home.component.html",
+  styleUrls: ["./home.component.css"],
 })
-
 export class HomeComponent implements OnInit {
-
   dynamicText: string = "";
-  phrases: string[] =[
-    "Team Player.",
-    "Software Developer.",
-    "Backend Engineer.",
+  phrases: string[] = [
+    "Software Programmer.",
     "Software Engineer.",
-    "Fullstack Developer.",
+    "Mearn Stack Developer.",
     "Code Enthusiast.",
   ];
 
@@ -34,9 +26,8 @@ export class HomeComponent implements OnInit {
   delayBetweenPhrases: number = 2000;
 
   constructor(private titleService: Title) {
-    this.titleService.setTitle('BC | Home')
+    this.titleService.setTitle("BC | Home");
   }
-
 
   ngOnInit(): void {
     this.type();
@@ -57,13 +48,12 @@ export class HomeComponent implements OnInit {
       setTimeout(() => this.type(), this.delayBetweenPhrases);
     } else if (this.isDeleting && this.currentCharIndex === 0) {
       this.isDeleting = false;
-      this.currentPhraseIndex = (this.currentPhraseIndex + 1) % this.phrases.length;
+      this.currentPhraseIndex =
+        (this.currentPhraseIndex + 1) % this.phrases.length;
       setTimeout(() => this.type(), 500);
     } else {
       const speed = this.isDeleting ? this.deletingSpeed : this.typingSpeed;
       setTimeout(() => this.type(), speed);
     }
   }
-
-
 }
